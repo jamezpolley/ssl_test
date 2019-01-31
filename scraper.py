@@ -1,11 +1,11 @@
 import subprocess
 
-output = subprocess.run(
-  ["openssl", "s_client", "-showcerts", "-CAfile", "/etc/ssl/certs/ca-certificates.crt", "-connect", "ina.gl:443"])
-
-print(output.returncode)
-print(output.stdout)
-print(output.stderr)
+for args in ([], ['-servername ina.gl']):
+  output = subprocess.run(
+    ["openssl", "s_client", "-showcerts", "-CAfile", "/etc/ssl/certs/ca-certificates.crt", "-connect", "ina.gl:443", *args])
+  print(output.returncode)
+  print(output.stdout)
+  print(output.stderr)
 
 output = subprocess.run(["sleep","60000"])
 
