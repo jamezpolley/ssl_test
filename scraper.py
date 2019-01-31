@@ -1,6 +1,7 @@
 import subprocess
 
 for args in ([], ["-servername", "ina.gl"]):
+  print("Using", args)
   output = subprocess.run(
     ["openssl", "s_client", "-showcerts", "-CAfile", "/etc/ssl/certs/ca-certificates.crt", "-connect", "ina.gl:443", *args])
   print(output.returncode)
