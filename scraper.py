@@ -10,7 +10,7 @@ hostnames = ["www.yahoo.com", "ina.gl"]
 for host in hostnames:
   data = {"host": host}
   output = subprocess.check_output(
-    ["openssl", "s_client", "-showcerts", "-CAfile", "/etc/ssl/certs/ca-certificates.crt", "-connect", "%s:443" % host, "-servername", host],)
+    ["openssl", "s_client", "-showcerts", "-CAfile", "/etc/ssl/certs/ca-certificates.crt", "-connect", "%s:443" % host, "-servername", host, "<", "/dev/null"],)
   data["output"] = output
   pprint.pprint(data)
   scraperwiki.sqlite.save(unique_keys=['host'], data=data)
