@@ -3,7 +3,6 @@ import scraperwiki
 
 hostnames = ["www.yahoo.com", "ina.gl"]
 
-data = 
 for host in hostnames:
   data{"host"} = host
   output = subprocess.run(
