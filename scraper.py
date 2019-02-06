@@ -1,12 +1,17 @@
 import subprocess
+import scraperwiki
 
-for args in ([], ["-servername", "ina.gl"]):
-  print("Using", args)
+hostnames = ["www.yahoo.com", "ina.gl"]
+
+data = 
+for host in hostnames:
+  data{"host"} = host
   output = subprocess.run(
-    ["openssl", "s_client", "-showcerts", "-CAfile", "/etc/ssl/certs/ca-certificates.crt", "-connect", "ina.gl:443", *args])
-  print(output.returncode)
-  print(output.stdout)
-  print(output.stderr)
+    ["openssl", "s_client", "-showcerts", "-CAfile", "/etc/ssl/certs/ca-certificates.crt", "-connect", "%s:443" % host, "-servername", host])
+  for value in ["returncode", "stdout", "stderr"]:
+    data{value} = getattr(output, value)
+  scraperwiki.sqlite.save(unique_keys=['host'], data=data)
+  print(data)
 
 output = subprocess.run(["sleep","60000"])
 
