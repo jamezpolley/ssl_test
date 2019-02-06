@@ -6,10 +6,9 @@ import scraperwiki
 PIPE=subprocess.PIPE
 
 hostnames = ["www.yahoo.com", "ina.gl"]
-data = {}
 
 for host in hostnames:
-  data["host"] = host
+  data = {"host": host}
   output = subprocess.check_output(
     ["openssl", "s_client", "-showcerts", "-CAfile", "/etc/ssl/certs/ca-certificates.crt", "-connect", "%s:443" % host, "-servername", host],)
   data["output"] = output
