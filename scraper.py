@@ -15,9 +15,8 @@ for host in hostnames:
     stderr=PIPE, stdout=PIPE)
   for value in ["returncode", "stdout", "stderr"]:
     data[value] = getattr(output, value)
-  scraperwiki.sqlite.save(unique_keys=['host'], data=data)
-
   pprint.pprint(data)
+  scraperwiki.sqlite.save(unique_keys=['host'], data=data)
 
 # This is a template for a Python scraper on morph.io (https://morph.io)
 # including some code snippets below that you should find helpful
