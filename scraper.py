@@ -16,8 +16,6 @@ for host in hostnames:
 
   pprint.pprint(data)
 
-output = subprocess.run(["sleep","60000"])
-
 # This is a template for a Python scraper on morph.io (https://morph.io)
 # including some code snippets below that you should find helpful
 
