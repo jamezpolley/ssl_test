@@ -9,7 +9,8 @@ data = {}
 for host in hostnames:
   data["host"] = host
   output = subprocess.Popen(
-    ["openssl", "s_client", "-showcerts", "-CAfile", "/etc/ssl/certs/ca-certificates.crt", "-connect", "%s:443" % host, "-servername", host])
+    ["openssl", "s_client", "-showcerts", "-CAfile", "/etc/ssl/certs/ca-certificates.crt", "-connect", "%s:443" % host, "-servername", host],
+    stderr="PIPE", stdout="PIPE")
   for value in ["returncode", "stdout", "stderr"]:
     data[value] = getattr(output, value)
   scraperwiki.sqlite.save(unique_keys=['host'], data=data)
