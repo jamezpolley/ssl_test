@@ -1,16 +1,19 @@
+import pprint
 import subprocess
+
 import scraperwiki
 
 hostnames = ["www.yahoo.com", "ina.gl"]
 
 for host in hostnames:
-  data{"host"} = host
+  data["host"] = host
   output = subprocess.run(
     ["openssl", "s_client", "-showcerts", "-CAfile", "/etc/ssl/certs/ca-certificates.crt", "-connect", "%s:443" % host, "-servername", host])
   for value in ["returncode", "stdout", "stderr"]:
-    data{value} = getattr(output, value)
+    data[value] = getattr(output, value)
   scraperwiki.sqlite.save(unique_keys=['host'], data=data)
-  print(data)
+
+  pprint.pprint(data)
 
 output = subprocess.run(["sleep","60000"])
 
