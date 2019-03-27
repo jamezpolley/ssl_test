@@ -1,5 +1,6 @@
 import pprint
 import subprocess
+import time
 
 import scraperwiki
 
@@ -18,6 +19,8 @@ for host in hostnames:
     data["output"] = e.output
   pprint.pprint(data)
   scraperwiki.sqlite.save(unique_keys=['host'], data=data)
+  
+time.sleep(120)
 
 # This is a template for a Python scraper on morph.io (https://morph.io)
 # including some code snippets below that you should find helpful
